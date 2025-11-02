@@ -49,7 +49,7 @@ const BookDetails = () => {
     if (id) {
       fetchBook();
     }
-  }, [id]);
+  }, [id, fetchSimilarBooks]);
 
   const fetchSimilarBooks = async () => {
     try {

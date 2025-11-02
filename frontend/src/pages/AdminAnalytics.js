@@ -16,8 +16,6 @@ import {
   Chip
 } from '@mui/material';
 import {
-  BarChart,
-  Bar,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -41,7 +39,7 @@ const AdminAnalytics = () => {
 
   useEffect(() => {
     fetchAnalytics();
-  }, []);
+  }, [fetchAnalytics]);
 
   const fetchAnalytics = async () => {
     try {
