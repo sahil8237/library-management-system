@@ -38,26 +38,26 @@ const AdminAnalytics = () => {
   const { logout } = useContext(AuthContext);
 
   useEffect(() => {
-    fetchAnalytics();
-  }, [fetchAnalytics]);
-
-  const fetchAnalytics = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get('/api/books/admin/analytics');
-      setAnalytics(response.data.data);
-      setError(null);
-    } catch (err) {
-      if (err.response?.status === 401) {
-        logout();
-      } else {
-        setError('Failed to fetch analytics data');
+    const fetchAnalytics = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get('/api/books/admin/analytics');
+        setAnalytics(response.data.data);
+        setError(null);
+      } catch (err) {
+        if (err.response?.status === 401) {
+          logout();
+        } else {
+          setError('Failed to fetch analytics data');
+        }
+        console.error('Error fetching analytics:', err);
+      } finally {
+        setLoading(false);
       }
-      console.error('Error fetching analytics:', err);
-    } finally {
-      setLoading(false);
-    }
-  };
+    };
+
+    fetchAnalytics();
+  }, [logout]);
 
   if (loading) {
     return (

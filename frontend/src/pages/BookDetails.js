@@ -46,22 +46,22 @@ const BookDetails = () => {
       }
     };
 
+    const fetchSimilarBooks = async () => {
+      try {
+        setSimilarLoading(true);
+        const response = await axios.get(`http://localhost:5000/api/books/${id}/similar`);
+        setSimilarBooks(response.data.data);
+      } catch (err) {
+        console.error('Error fetching similar books:', err);
+      } finally {
+        setSimilarLoading(false);
+      }
+    };
+
     if (id) {
       fetchBook();
     }
-  }, [id, fetchSimilarBooks]);
-
-  const fetchSimilarBooks = async () => {
-    try {
-      setSimilarLoading(true);
-      const response = await axios.get(`http://localhost:5000/api/books/${id}/similar`);
-      setSimilarBooks(response.data.data);
-    } catch (err) {
-      console.error('Error fetching similar books:', err);
-    } finally {
-      setSimilarLoading(false);
-    }
-  };
+  }, [id]);
 
   if (loading) {
     return (
