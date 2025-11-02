@@ -2,25 +2,25 @@
   "version": 2,
   "builds": [
     {
-      "src": "library-management-system/package.json",
+      "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
         "distDir": "frontend/build"
       }
     },
     {
-      "src": "library-management-system/backend/server.js",
+      "src": "backend/server.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/library-management-system/backend/server.js"
+      "dest": "/backend/server.js"
     },
     {
       "src": "/(.*)",
-      "dest": "/library-management-system/frontend/build/$1"
+      "dest": "/frontend/build/$1"
     }
   ]
 }
